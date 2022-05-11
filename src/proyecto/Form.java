@@ -16,14 +16,15 @@ import javax.swing.JTextArea;
  * @author Brayan
  */
 public class Form extends javax.swing.JFrame {
+
     static Pizarra p;
     String x;
     String y;
-    
+
     ArrayList<Cuadrado> c = new ArrayList<Cuadrado>();
-    
+
     DefaultListModel modelo = new DefaultListModel();
-    
+
     /**
      * Creates new form Form
      */
@@ -273,7 +274,7 @@ public class Form extends javax.swing.JFrame {
         p.setFigura(1);
         jPanel3.setVisible(true);
         jPanel4.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txt_xActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_xActionPerformed
@@ -281,20 +282,20 @@ public class Form extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_xActionPerformed
 
     private void txt_xPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txt_xPropertyChange
-        
+
     }//GEN-LAST:event_txt_xPropertyChange
 
     private void txt_xKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_xKeyPressed
-        
-        
+
+
     }//GEN-LAST:event_txt_xKeyPressed
 
     private void txt_xKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_xKeyReleased
-       
+
     }//GEN-LAST:event_txt_xKeyReleased
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        p.setDimension(Integer.parseInt(txt_x.getText().trim()),Integer.parseInt(txt_x.getText().trim()));
+        p.setDimension(Integer.parseInt(txt_x.getText().trim()), Integer.parseInt(txt_x.getText().trim()));
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -306,34 +307,34 @@ public class Form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        
-            p.borrar();
-        
+
+        p.borrar();
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        
+
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
-        
+
     }//GEN-LAST:event_jPanel1KeyPressed
 
     private void jPanel1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyReleased
-        
+
     }//GEN-LAST:event_jPanel1KeyReleased
 
-   
+
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        Color color = JColorChooser.showDialog(null,"un color",Color.BLACK);
+        Color color = JColorChooser.showDialog(null, "un color", Color.BLACK);
         p.setColor(color);
         repaint();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoActionPerformed
-        
+
         jTextPane1.setText(p.getInfo());
-        
+
     }//GEN-LAST:event_btnInfoActionPerformed
 
     /**

@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 
+
 public class Cuadrado {
     
     private int x;
@@ -35,7 +36,13 @@ public class Cuadrado {
     
     public void paintCuadrado(Graphics g) {
         g.setColor(color);
-        g.fillRect(x, y, w, h);    
+        g.fillRect(x, y, w, h);
+        //remarcarCuadrado(g);
+    }
+    
+    public void remarcarCuadrado(Graphics g) {
+        g.setColor(Color.yellow);
+        g.drawRect(x, y, w, h);
     }
     
     public int getX() {

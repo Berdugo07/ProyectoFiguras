@@ -1,11 +1,14 @@
 package proyecto;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Pizarra extends JPanel implements MouseListener {
@@ -16,6 +19,7 @@ public class Pizarra extends JPanel implements MouseListener {
     static int h = 50;
     private ArrayList<Cuadrado> c = new ArrayList<Cuadrado>();
     static int figura;
+    JLabel lb;
     int x, y;
     Color color;
     static int contador = 0;
@@ -23,13 +27,17 @@ public class Pizarra extends JPanel implements MouseListener {
     public Pizarra(Dimension d) {
         setSize(d);
         setPreferredSize(d);
+        lb=new JLabel();
+        this.add(lb);
+        lb.setFont(new Font("Serif", Font.BOLD, 15));
+        lb.setForeground(Color.white);
         setVisible(true);
         addMouseListener(this);
     }
 
     public void setDimension(int w, int h) {
 
-        for (int i =0; i < c.get(mapPixeles[x][y]-1).getW(); i++) {
+        for (int i =5; i < c.get(mapPixeles[x][y]-1).getW(); i++) {
                 for (int j = 0; j < c.get(mapPixeles[x][y]-1).getH(); j++) {
                     mapPixeles[c.get(mapPixeles[x][y]-1).getX() + i +1][c.get(mapPixeles[x][y]-1).getY() + j ] = 0;
                 }
@@ -50,15 +58,25 @@ public class Pizarra extends JPanel implements MouseListener {
 
         super.paint(g);
 
-        c.forEach((objCir) -> {
-            objCir.paintCuadrado(g);
+        c.forEach((objCua) -> {
+            objCua.paintCuadrado(g);
+            
         });
-
+        //color(g);
+        
         /*g.fillOval(350, 270, 70, 70);
         int[] vx2 = {500, 550, 450};
         int[] vy2 = {270, 320, 320};
         g.fillPolygon(vx2, vy2, 3);*/
     }
+    
+   /* public void color(Graphics g){
+        //Graphics j = null;
+        if(figura==2){
+        g.setColor(color.yellow);
+        g.drawRect(c.get(mapPixeles[x][y] - 1).getX(), c.get(mapPixeles[x][y] - 1).getY(), w, h);
+        }
+    }*/
 
     public String getInfo() {
         String text = "Tipo : Cuadrado"
@@ -109,8 +127,10 @@ public class Pizarra extends JPanel implements MouseListener {
             System.out.println("aqui hay un valor" + mapPixeles[e.getX()][e.getY()]);
             x = e.getX();
             y = e.getY();
+            repaint();
             c.get(mapPixeles[e.getX()][e.getY()]-1).setColor(color);
-            //repaint();
+            lb.setText("Figura numero : "+mapPixeles[e.getX()][e.getY()]+" selecionada");
+            //figura=2;
             System.out.println(mapPixeles[e.getX()][e.getY()] + " valor llenado en la matriz");
         }
 
