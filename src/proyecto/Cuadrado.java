@@ -31,7 +31,6 @@ public class Cuadrado {
         this.h = h;
         this.color=color;
         id++;
-        System.out.println(id +"  este es el id");
     }
     
     public void paintCuadrado(Graphics g) {

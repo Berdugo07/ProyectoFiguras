@@ -5,19 +5,15 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-import javax.swing.JComponent;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Pizarra extends JPanel implements MouseListener {
 
     int[][] mapPixeles = new int[700][500];
-    boolean b = true;
-    static int w = 40;
-    static int h = 40;
+    boolean b;
+    static int w = 50;
+    static int h = 50;
     private ArrayList<Cuadrado> c = new ArrayList<Cuadrado>();
     static int figura;
     int x, y;
@@ -31,22 +27,23 @@ public class Pizarra extends JPanel implements MouseListener {
         addMouseListener(this);
     }
 
-    
-    public ArrayList<Cuadrado> getFigura() {
-        return c;
-    }
-
     public void setDimension(int w, int h) {
-        this.w = w;
-        this.h = h;
+
+        for (int i =0; i < c.get(mapPixeles[x][y]-1).getW(); i++) {
+                for (int j = 0; j < c.get(mapPixeles[x][y]-1).getH(); j++) {
+                    mapPixeles[c.get(mapPixeles[x][y]-1).getX() + i +1][c.get(mapPixeles[x][y]-1).getY() + j ] = 0;
+                }
+        }
+        
+        for (int i =0; i < w; i++) {
+                for (int j = 0; j < h; j++) {
+                    mapPixeles[c.get(mapPixeles[x][y]-1).getX() + i +1][c.get(mapPixeles[x][y]-1).getY() + j ] =c.get(mapPixeles[x][y]-1).getId() ;
+                }
+        }
+        
         c.get(mapPixeles[x][y] - 1).setH(h);
         c.get(mapPixeles[x][y] - 1).setW(w);
         repaint();
-    }
-
-    public Cuadrado getDimension() {
-        System.out.print(mapPixeles[x][y] - 1);
-        return c.get(mapPixeles[x][y] - 1);
     }
 
     public void paint(Graphics g) {
@@ -61,6 +58,12 @@ public class Pizarra extends JPanel implements MouseListener {
         int[] vx2 = {500, 550, 450};
         int[] vy2 = {270, 320, 320};
         g.fillPolygon(vx2, vy2, 3);*/
+    }
+
+    public String getInfo() {
+        String text = "Tipo : Cuadrado"
+                + "\n" + "Lado : " + c.get(mapPixeles[x][y] - 1).getW();
+        return text;
     }
 
     public void setFigura(int figura) {
@@ -91,7 +94,7 @@ public class Pizarra extends JPanel implements MouseListener {
 
             c.add(new Cuadrado(x, y, w, h, color));
 
-            //agregamos el id a las posiciones en las que est ala figura
+            //agregamos el id a las posiciones en las que esta la figura
             for (int i = 0; i < w; i++) {
                 for (int j = 0; j < h; j++) {
                     mapPixeles[x + i - 1][y + j - 1] = c.get(c.size() - 1).getId();
@@ -106,6 +109,8 @@ public class Pizarra extends JPanel implements MouseListener {
             System.out.println("aqui hay un valor" + mapPixeles[e.getX()][e.getY()]);
             x = e.getX();
             y = e.getY();
+            c.get(mapPixeles[e.getX()][e.getY()]-1).setColor(color);
+            //repaint();
             System.out.println(mapPixeles[e.getX()][e.getY()] + " valor llenado en la matriz");
         }
 
